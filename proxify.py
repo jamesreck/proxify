@@ -3,39 +3,49 @@ from PIL import Image, ImageDraw, ImageEnhance
 import math # For math.ceil or math.round
 import re # For sanitizing filenames
 
-# --- Configuration ---
+# --- Card and Paper Size Configuration ---
 CARD_WIDTH_MM = 63.5
 CARD_HEIGHT_MM = 88.9
 PAPER_WIDTH_IN = 8.5
 PAPER_HEIGHT_IN = 11
-DPI = 1200
-MM_TO_IN = 1 / 25.4
 
-# Desired final black border thickness in mm for each side
+# --- Output Resolution ---
+DPI = 1200
+
+# --- Color Enhancement Configuration ---
+SATURATION_FACTOR = 1.0  # e.g., 1.2 for a 20% increase
+BRIGHTNESS_FACTOR = 1.0 # e.g., 1.15 for a 15% increase (1.0 is no change)
+
+# --- Card Border Configuration ---
+# Desired final black border thickness in mm for each side (Standard/Extended Art)
 DESIRED_BORDER_TOP_MM = 3
 DESIRED_BORDER_LEFT_MM = 3
 DESIRED_BORDER_RIGHT_MM = 3
 DESIRED_BORDER_BOTTOM_MM = 4.1
 
-# For Extended Art: vertical offset from top of content to scan for side borders
-EXTENDED_ART_SCAN_OFFSET_Y_MM = 3
-
 # Pixels to trim from original bottom of full art cards. Set to 0 for no crop.
 FULL_ART_BOTTOM_CROP_PX = 80
 
+# ---Cut Line Configuration---
 LINE_COLOR = (255, 51, 153) # Pink for high visibility
 LINE_WIDTH = 4 # Pixels
-BLACK_BORDER_THRESHOLD = 50 # RGB values must all be <= this to be considered 'black'
-EDGE_ZONE_CHECK_WIDTH_PX = 10  # Pixel width of edge zones to check for solid black
 
-SATURATION_FACTOR = 1.0  # e.g., 1.2 for a 20% increase
-BRIGHTNESS_FACTOR = 1.0 # e.g., 1.15 for a 15% increase (1.0 is no change)
-
-# --- NEW CONFIGURATION OPTION ---
+# --- Override Configuration ---
 # Set to True to force all cards to be processed as "standard" frame type,
 # skipping automatic detection.
 FORCE_STANDARD_FRAME_TYPE = False # Default is False (use automatic detection)
 
+# --- Border Detection Configuration ---
+BLACK_BORDER_THRESHOLD = 50 # RGB values must all be <= this to be considered 'black'
+EDGE_ZONE_CHECK_WIDTH_PX = 10  # Pixel width of edge zones to check for solid black
+EXTENDED_ART_SCAN_OFFSET_Y_MM = 3 # Vertical offset in mm for Extended Art side content detection
+
+########################################################################
+# --- NORMAL USERS SHOULD NOT EDIT BELOW THIS LINE! ---
+########################################################################
+
+# --- Constants ---
+MM_TO_IN = 1 / 25.4
 
 # --- Calculations ---
 CARD_WIDTH_PX = round((CARD_WIDTH_MM * MM_TO_IN) * DPI)
