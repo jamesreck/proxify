@@ -44,6 +44,8 @@ Note: I'll assume you're on Windows.
 8. In your terminal, type `python proxify.py` to run the tool. When it prompts for the card directory, type `input_cards`. When it asks for the output directory, type `card_sheets`.
 9. The program will run, and it may take a while depending on how many cards you have. When it's finished, the print-ready sheets will be in the `card_sheets` directory.
 
+* NOTE: When you close your terminal session, it closes your virtual environment. You need to have the virtual environment running for the tool to work, so if you try to run it and it fails, make sure you have enabled the venv.
+
 ### Configuration
 To configure the tool, open the source code in a text editor. If you're on windows, use Notepad. There are a number of variables at the top of the script. They are set with defaults that should work great on MPC Fill images, but tweak them as needed. Some particular options of note:
 
